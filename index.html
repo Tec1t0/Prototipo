@@ -1,131 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> <!--Aqui se inlcuyen los metadatos de la pagina o app y en el encabezado de esta-->
-    <meta charset="UTF-8">  <!--Indica esta linea que se permiten los caracteres como la ñ-->
-    <meta name="viewport" content="width=device-width, initial-scale=0.1"> <!--Se ajusta al tamaño de la pantalla según el dispositivo-->
-    <meta name="description" content="Prototipado basico de visualizacion."> <!--Descripcion de la pagina-->
-    <meta name="author" content="Axel M."> <!--Nombre del autor de la pagina-->
-    <title>sistema ERP (Prototipo 1)</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prototipado basico de visualizacion para Brave Coffee.">
+    <meta name="author" content="Axel M.">
+    <title>Sistema ERP (Prototipo 1)</title>
     <link rel="icon" href="Logos.jpg" type="image/jpg">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/html5-qrcode"></script>
-
 </head>
-
 <body>
-  <header>
-    <h1>Brave Coffee</h1>
-    <p>Un espacio para relajarte con un buen café.</p>
-  </header>
+  <nav class="barra-lateral" aria-label="Menu Principal">
+    <section class="encabezado">
+        <img  class="logo" src="Logo.jpg" alt="Nombre de la empresa Logotipo" width="50" height="50" >
+        <h1 class="titulo">Brave Coffee</h1>
+    </section>
+    
+    <button id="boton-dashboard" class="opcion activo" type="button">
+        DASHBOARD
+    </button>
+    <button id="boton-inventario" class="opcion" type="button">
+        INVENTARIO
+    </button>
+  </nav>
 
-<main>
-<section class="seccion-graficos">
-  <h2>Graficos</h2>
-  <div class="fila-graficos">
+  <main class="contenido">
+    <!-- SECCIÓN DASHBOARD -->
+    <section id="dashboard">
+        <header>
+            <h2>Hola</h2>
+            <p>Bienvenido al sistema ERP. Aquí podrás visualizar las métricas clave.</p>
+        </header>
 
-    <article class="tarjeta-grafico">
-      <h2>Ingresos</h2>
-      <div class="contenedor-grafico">
-        <canvas id="grafico-ingreso"></canvas>
-      </div>
-    </article>
+        <section class="seccion-graficos">
+            <div class="fila-graficos">
+                <article class="tarjeta-grafico">
+                    <h2>Ingresos</h2>
+                    <div class="contenedor-grafico">
+                        <canvas id="grafico-ingreso"></canvas>
+                    </div>
+                </article>
 
-    <article class="tarjeta-grafico">
-      <h2>Egresos</h2>
-      <div class="contenedor-grafico">
-        <canvas id="grafico-egresos"></canvas>
-      </div>
-    </article>
+                <article class="tarjeta-grafico">
+                    <h2>Egresos</h2>
+                    <div class="contenedor-grafico">
+                        <canvas id="grafico-egresos"></canvas>
+                    </div>
+                </article>
 
-    <article class="tarjeta-grafico">
-      <h2>Comparación</h2>
-      <div class="contenedor-grafico">
-        <canvas id="grafico-comparacion"></canvas>
-      </div>
-    </article>
+                <article class="tarjeta-grafico">
+                    <h2>Comparación</h2>
+                    <div class="contenedor-grafico">
+                        <canvas id="grafico-comparacion"></canvas>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </section>
 
-  </div>
-</section>
-
-  <section>
-    <h2>Sobre nosotros</h2>
-    <p>
-      Bienvenido a nuestra página web. Aquí podrás ver todos los productos
-      de nuestro catálogo.
-    </p>
-  </section>
-
-  <section class="productos">
-    <h2>Nuestros productos</h2>
-    <p>Pronto conocerás nuestros cafés y otras opciones.</p>
-    <div class="lista-productos">
-      <article class="producto">
-        <h3>Espresso</h3>
-        <p>Un café Intenso.</p>
-        <button type="button" id="boton-espresso"> <!--Creacion de boton-->
-            ver detalle
-        </button>
-        <p id="detalle-espresso"></p>
-      </article>
-
-      <article class="producto">
-        <h3>Capuchino</h3>
-        <p>Un café con leche espumada.</p>
-      </article>
-    </div>
-  </section>
-
-  <section>
-    <h2>Lector de productos</h2>
-    <P>En este apartado podras ingresar los productos a tu inventario</P>
-    <div>
-      <div id="reader" style="width: 100%; max-width: 500px; margin: 0 auto;"></div>
-      <div></div>
-      <div id="resultado" style="color: rgb(54, 119, 1);
-        text-align: center; /*alinea el texto en el centro*/
-        margin: 0;"></div>
-    </div>
-    <script>
-        function onScanSuccess(decodedText, decodedResult) {
-        console.log(`Code matched = ${decodedText}`, decodedResult);
-        document.getElementById('resultado').innerText = "Código escaneado: " + decodedText;
-        }
-
-        function onScanFailure(error) {
-         // handle scan failure, usually better to ignore and keep scanning.
-        // for example:
-            console.warn(`Code scan error = ${error}`);
-        }
-
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader",
-            { fps: 60, qrbox: {width: 250, height: 250} },
-             /* verbose= */ false);
+    <!-- SECCIÓN INVENTARIO -->
+    <section id="inventario" hidden>
+        <h1>Inventario</h1>
+            <div class="barra-controles">
+                <div class="buscador">
+                    <label for="buscar-producto">Buscar:</label>
+                    <input id="buscar-producto" autofocus />
+                </div>
+                    <button type="button" id="boton-ingresar">+</button>
+            </div> 
         
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    </script>
-  </section>
+        <section class="productos">
+            <h2>Nuestros productos</h2>
+            <p>Catálogo de cafés y otras opciones.</p>
+            <div class="lista-productos">
+                
+                <article class="producto">
+                    <h3>Espresso</h3>
+                    <p>Un café Intenso.</p>
+                    <button type="button" id="boton-espresso">Ver detalle</button>
+                    <p id="detalle-espresso"></p>
+                </article>
 
-  <section>
-    <h2>Contacto</h2>
-    <p>
-    Teléfono: 
-    <a href="tel:+56988888888">+56 9 8888 8888 </a>
-    </p>
+                <article class="producto">
+                    <h3>Capuchino</h3>
+                    <p>Un café con leche espumada.</p>
+                </article>
+            </div>
+        </section>
 
-    <p>
-    Correo: 
-    <a href="mailto:bravecoffee@gmail.com"> 
-      bravecoffee@gmail.com
-    </a>
-    </p>
-  </section>
-</main>
+        <section>
+            <h2>Lector de productos</h2>
+            <p>En este apartado podrás ingresar los productos a tu inventario escaneando su código.</p>
+            <div>
+                <div id="reader" style="width: 100%; max-width: 500px; margin: 0 auto;"></div>
+                <div id="resultado" style="color: rgb(54, 119, 1); text-align: center; margin: 10px 0; font-weight: bold;"></div>
+            </div>
+        </section>
+    </section>
+
+    <!-- CONTACTO (Siempre visible al final) -->
+    <section>
+        <h2>Contacto Soporte</h2>
+        <p>Teléfono: <a href="tel:+56988888888">+56 9 8888 8888</a></p>
+        <p>Correo: <a href="mailto:bravecoffee@gmail.com">bravecoffee@gmail.com</a></p>
+    </section>
+  </main>
 
   <footer>
-    <p>Brave Coffee</p>
+    <p>Brave Coffee ERP - 2026</p>
   </footer>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
