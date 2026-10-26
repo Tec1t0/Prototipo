@@ -1,20 +1,82 @@
 body {
-    background-color: #f7f3ee; /*Color del fondo de la pagina en general*/
-    font-family: Arial,sans-serif; /*Fuente de letras*/
-    color:#2d211b; /*color de letras en general de toda la pagina*/
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    color: #2d211b;
+}
+.encabezado {
+    display: flex;         /* Activa el diseño en línea (horizontal) */
+    align-items: center;   /* Centra verticalmente el logo y el texto */
+    gap: 15px;             /* Controla la separación entre el logo y el texto */
+    background-color: #edc08c; /* Color de fondo similar al de tu imagen */
+    padding: 20px;
+    border-radius: 10%;
 }
 
-h1 {
-    color:#6b3e26; /*Color en especifico del titulo 1*/
+.logo{
+    width: 60px;           /* Ajusta el tamaño de tu logo aquí */
+    height: auto;
+    border-radius: 50%;
 }
 
-h2 {
-    color:#6b3e26; /*Color en especifico del titulo 2*/
+.titulo{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin: 0;             /* Elimina márgenes por defecto para evitar desfases */
+    color: #000000;
+}
+
+.barra-lateral {
+    width: 225px;
+    padding: 14px;
+    background: #eccaa3;
+}
+
+.opcion {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: #ce642b;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.opcion:hover {
+    background: #e2c6c6;
+}
+
+.opcion.activo {
+    background: #d48a5c85;
+    color: #503e34fb;
+    font-weight: bold;
+}
+
+.opcion:focus-visible {
+    outline: 2px solid #48fa02;
+    outline-offset: 2px;
+}
+
+.contenido {
+    flex: 1;
+    padding: 30px;
+}
+
+h1, h2 {
+    color: #6b3e26;
+    font-weight:bold ;
 }
 
 header {
-    padding: 24px; /*Creacion de un espacio adentro o un "bloque de texto" y su tamaño*/
-    background-color: #eccaa3; /*El color de fondo de este*/
+    padding: 24px 0;
+    background-color: white;
 }
 
 main {
@@ -28,53 +90,94 @@ section {
 footer {
     padding: 20px;
     background-color: rgb(100, 19, 19);
-    p {
-        color: white;
-        text-align: center; /*alinea el texto en el centro*/
-        margin: 0; 
-    }
+    width: 100%;
+    position: fixed;
+    bottom: 0;
 }
-.productos { /*para llamar las clases definidas en html se le pone primero el . y luego el nombre*/
-    background-color: #ffffff;
+
+footer p {
+    color: white;
+    text-align: center;
+    margin: 0; 
+}
+.barra-controles {
+    display: flex;
+    justify-content: space-between; /* Envía el buscador a la izq y el botón a la der */
+    align-items: center; /* Centra los elementos verticalmente para que queden parejos */
+    margin-bottom: 20px;
+}
+.buscador {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#buscar-producto {
+    color: #000000;
+    background-color: white;
+    border-color: #000000;
+    border-radius: 8px ;
+}
+
+#boton-ingresar {
+    color: white;
+    background-color: #6b3e26;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 8px;
+    cursor: pointer;
+}
+#boton-ingresar:hover {
+    background-color: #e9b495;
+}
+
+.productos {
+    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 12px;
+    border: 1px solid #eccaa3;
 }
+
 .lista-productos {
-    display: flex; /*Coloca los elementos de esta clase en una fila*/
-    gap: 16px; /*Espacio entre los elementos de la fila*/
+    display: flex;
+    gap: 16px;
 }
-@media (max-widht: 600px) {  /*Cuando la ventana mida 600 pixeles de ancho o menos*/
+
+/* Corrección: max-width */
+@media (max-width: 600px) {  
     .lista-productos {
         flex-direction: column;
     }
 }
-#boton-espresso {
+
+#boton-espresso{
     background-color: #6b3e26;
     color: white;
     border: none;
     border-radius: 8px;
     padding: 10px 16px;
     cursor: pointer;
+}
 
-}
 #boton-espresso:hover {
-    background-color: #a56c4a;
+    background-color: #e9b495;
 }
+
 .fila-graficos {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
 }
 
 .tarjeta-grafico {
-  min-width: 0;
-  padding: 16px;
-  background-color: white;
-  border-radius: 12px;
+    min-width: 0;
+    padding: 16px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra para darle un aspecto de panel moderno */
 }
 
 .contenedor-grafico {
-  position: relative;
-  width: 100%;
-  height: 250px;
+    position: relative;
+    width: 100%;
+    height: 250px;
 }
